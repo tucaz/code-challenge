@@ -4,21 +4,13 @@ require_relative 'base_parser'
 class GoogleMosaicGalleryParser < BaseParser
   def extract_artwork
     # Find all divs that match our gallery structure
+    # div 
+    #   a
+    #     img
+    #     div
     items = @document.css('div:has(a)').select do |div|
       # Check if div has exactly one direct <a> child
       next false unless div.elements.count == 1 && div.elements.first.name == 'a'
-      
-      # puts "div class: #{div['class']}"
-
-      # if div['class'] == 'iELo6'
-      #   puts "div class: #{div['class']}"
-      #   puts "div children: #{div.children.count}"
-      #   puts "div children name: #{div.children.first.name}"
-      #   div.children.each do |child|
-      #     puts "\tChild tag: #{child.name}"
-      #     puts "\tChild tag contents: #{child.to_html}"
-      #   end
-      # end
       
       anchor = div.elements.first
       
@@ -29,11 +21,6 @@ class GoogleMosaicGalleryParser < BaseParser
       
       true
     end
-
-    # puts "Found #{items.count} gallery items"
-    # items.take(10).each do |div|
-    #   puts "div: #{div.to_html}"
-    # end
 
     items.map do |div|
       {

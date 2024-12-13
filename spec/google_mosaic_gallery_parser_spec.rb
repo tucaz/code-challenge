@@ -13,7 +13,7 @@ RSpec.describe GoogleMosaicGalleryParser do
 
     it 'returns artworks' do
       expect(result).to be_an(Array)
-      
+      expect(result.length).to be > 1
     end
 
     it 'artwork contains all required fields' do
