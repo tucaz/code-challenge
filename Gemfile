@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri', '~> 1.15.0'  # For HTML parsing
-gem 'json', '~> 2.6.0'       # For JSON handling
+gem 'sinatra'
+gem 'sinatra-cors'  # To allow browser requests
+gem 'nokogiri'      # If not already included
+gem 'rackup'
+gem 'puma'
 
 group :development, :test do
   gem 'rspec', '~> 3.12.0'   # For testing
