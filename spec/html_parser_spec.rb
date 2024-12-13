@@ -2,13 +2,26 @@ require 'spec_helper'
 require_relative '../lib/html_parser'
 
 RSpec.describe HtmlParser do
-  let(:sample_html) do
-    File.read(File.join(__dir__, 'fixtures/working.html'))
+  describe 'parse alternative Scenario 1 - Cities Artwork (fixtures/scenario1.html)' do
+    let(:sample_html) do
+      File.read(File.join(__dir__, 'fixtures/scenario1.html'))
+    end
+
+    subject(:parser) { described_class.new(sample_html) }
+    
+    let(:result) { parser.parse }
+
+    it 'returns artworks' do
+    end
   end
 
-  subject(:parser) { described_class.new(sample_html) }
+  describe 'parse provided Van Gogh artworks (scripts/default.hmtl)' do
+    let(:sample_html) do
+      File.read(File.join(__dir__, 'fixtures/default.html'))
+    end
 
-  describe '#parse' do
+    subject(:parser) { described_class.new(sample_html) }
+    
     let(:result) { parser.parse }
 
     it 'returns artworks' do

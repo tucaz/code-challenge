@@ -15,7 +15,7 @@ set :allow_headers, "content-type,if-modified-since"
 get '/parse' do
   content_type :json
   
-  html = File.read(File.join(__dir__, 'spec/fixtures/working.html'))
+  html = File.read(File.join(__dir__, 'spec/fixtures/default.html'))
   parser = HtmlParser.new(html)
   result = parser.parse
   
