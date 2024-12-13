@@ -11,3 +11,7 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 end 
+
+def read_fixture(filename)
+  File.read(File.join(__dir__, 'fixtures', filename))
+end

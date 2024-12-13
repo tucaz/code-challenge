@@ -1,7 +1,8 @@
 require 'nokogiri'
 require 'json'
+require_relative 'base_parser'
 
-class GoogleGalleryParser < BaseParser
+class GoogleCarouselParser < BaseParser
   def extract_artwork    
     # Gets the container of the artworks
     container = @document.css('#_c2yRXMvVOs3N-QazgILgAg93 > div:nth-child(1) > div:nth-child(1)')
