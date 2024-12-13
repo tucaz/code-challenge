@@ -1,0 +1,36 @@
+@startuml HTML Parser API Flow
+
+participant "Client" as client
+participant "App (Sinatra)" as app
+participant "HtmlParser" as parser
+participant "BaseParser" as base
+participant "GoogleCarouselParser" as carousel
+participant "GoogleMosaicGalleryParser" as mosaic
+
+client -> app: GET /search?scenario=default
+activate app
+
+app -> parser: new HtmlParser(html)
+activate parser
+
+parser -> parser: determine_parser()
+note right: Strategy selection based\non HTML structure
+
+alt HTML contains 'g-scrolling-carousel'
+    parser --> carousel: new GoogleCarouselParser(html)
+else HTML contains 'kc:/visual_art/visual_artist:works'
+    parser --> mosaic: new GoogleMosaicGalleryParser(html)
+end
+
+parser -> carousel: extract_artwork()
+activate carousel
+carousel --> parser: artwork_data
+deactivate carousel
+
+parser -> app: {artworks: artwork_data}
+deactivate parser
+
+app -> client: JSON Response
+deactivate app
+
+@enduml
